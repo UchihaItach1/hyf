@@ -1,0 +1,9 @@
+server:
+  port: 8000
+
+#定时器连接池
+scheduled:
+  pool-size: 10
+
+logging:
+  config: classpath:logback.xml

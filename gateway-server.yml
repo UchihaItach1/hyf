@@ -1,0 +1,139 @@
+server:
+  port: 9999
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: weilai9-123
+  zipkin:
+    rabbitmq:
+      queue: zipkin
+  sleuth:
+    sampler:
+      percentage: 0.2
+
+redis:
+  cache:
+    expiration: 3601
+
+zuul:
+  ribbon:
+    eager-load:
+      enabled: true
+      clients: auth-server,pc-server,user-server,admin-server,paycenter-server,third-server
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  routes:
+    auth-server:
+      path: /auth/**
+      serviceId: auth-server
+      stripPrefix: true
+      sensitiveHeaders:
+    pc-server:
+      path: /pc/**
+      serviceId: pc-server
+      stripPrefix: true
+      sensitiveHeaders:
+    admin-server:
+      path: /admin/**
+      serviceId: admin-server
+      stripPrefix: true
+      sensitiveHeaders:
+    user-server:
+      path: /user/**
+      serviceId: user-server
+      stripPrefix: true
+      sensitiveHeaders:
+    paycenter-server:
+      path: /paycenter/**
+      serviceId: paycenter-server
+      stripPrefix: true
+      sensitiveHeaders:
+    third-server:
+      path: /third/**
+      serviceId: third-server
+      stripPrefix: true
+      sensitiveHeaders:
+  ratelimit:
+    key-prefix: wlj-ratelimite
+    enabled: false
+    repository: REDIS
+    behind-proxy: true
+    policies:
+      pc-server:
+        limit: 1000
+        quota: 1000
+        refresh-interval: 3
+  semaphore:
+    max-semaphores: 20000
+security:
+  validate:
+    code: false
+  sessions: stateless
+  auth:
+    server: http://localhost:9863
+  oauth2:
+    client:
+      client-id: wlj
+      client-secret: wlj
+    resource:
+      loadBalanced: true
+      token-info-uri: ${security.auth.server}/oauth/pc-token
+      service-id: gateway-server
+      jwt:
+         key-uri: ${security.auth.server}/oauth/token_key #解析jwt令牌所需要密钥的地址
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+    auth-server:
+          execution:
+            isolation:
+              thread:
+                timeoutInMilliseconds: 15000
+    pc-server:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000
+    admin-server:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000
+
+ribbon:
+  ReadTimeout: 15000
+  ConnectTimeout: 15000
+
+urls:
+  anon:
+#    - /mobile/**
+    - /auth/**
+    - /user/hasAuth
+#    - /admin/code/*
+#    - /admin/smsCode/*
+#    - /admin/user/info
+#    - /admin/menu/userTree
+    - /swagger-resources/**
+    - /swagger-ui.html
+    - /*/v2/api-docs
+    - /swagger/api-docs
+#    - /webjars/**
+#    - /admin/common/**
+    - /api/sec/tokens/**
+wlj:
+  log:
+    rule:
+      exclude: /admin/common/upload
+
+logging:
+  config: classpath:logback.xml

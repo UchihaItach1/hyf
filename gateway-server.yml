@@ -2,14 +2,14 @@ server:
   port: 9999
 
 spring:
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: weilai9-123
-  zipkin:
-    rabbitmq:
-      queue: zipkin
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#  zipkin:
+#    rabbitmq:
+#      queue: zipkin
   sleuth:
     sampler:
       percentage: 0.2
@@ -98,17 +98,27 @@ hystrix:
           execution:
             isolation:
               thread:
-                timeoutInMilliseconds: 15000
+                timeoutInMilliseconds: 30000
     pc-server:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 15000
+            timeoutInMilliseconds: 30000
     admin-server:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 15000
+            timeoutInMilliseconds: 30000
+    user-server:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+    third-server:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
 
 ribbon:
   ReadTimeout: 15000

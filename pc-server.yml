@@ -7,14 +7,14 @@ redis:
 
 # datasoure默认使用JDBC
 spring:
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: weilai9-123
-  zipkin:
-    rabbitmq:
-      queue: zipkin
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#  zipkin:
+#    rabbitmq:
+#      queue: zipkin
   sleuth:
     sampler:
       percentage: 1.0
@@ -22,6 +22,9 @@ spring:
     url: jdbc:mysql://115.28.22.205:3306/yfsy_cloud?serverTimezone=UTC&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: Hyf20191218
+#    url: jdbc:mysql://139.159.206.140:3306/yfsy_cloud?serverTimezone=UTC&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+#    username: rootc
+#    password: Weilai9!Cool
     driver-class-name: com.mysql.jdbc.Driver
 
     hikari:

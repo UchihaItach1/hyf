@@ -2,9 +2,6 @@ server:
   port: 9863
 
 # datasoure默认使用JDBC
-#    url: jdbc:mysql://139.159.206.140:3306/oauth?serverTimezone=UTC&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-#    username: rootc
-#    password: Weilai9!Cool
 spring:
   freemarker:
     allow-request-override: false
@@ -24,6 +21,9 @@ spring:
     url: jdbc:mysql://115.28.22.205:3306/oauth?serverTimezone=UTC&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: Hyf20191218
+#    url: jdbc:mysql://139.159.206.140:3306/oauth?serverTimezone=UTC&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+#    username: rootc
+#    password: Weilai9!Cool
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
       connection-test-query: SELECT 1 FROM DUAL

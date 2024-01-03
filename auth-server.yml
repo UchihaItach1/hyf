@@ -1,38 +1,6 @@
 server:
   port: 9863
-
-# datasoure默认使用JDBC
-spring:
-  freemarker:
-    allow-request-override: false
-    allow-session-override: false
-    cache: true
-    charset: UTF-8
-    check-template-location: true
-    content-type: text/html
-    enabled: true
-    expose-request-attributes: false
-    expose-session-attributes: false
-    expose-spring-macro-helpers: true
-    prefer-file-system-access: true
-    suffix: .ftl
-    template-loader-path: classpath:/templates/
-  datasource:
-#    url: jdbc:mysql://115.28.22.205:3306/oauth?serverTimezone=UTC&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-#    username: root
-#    password: Hyf20191218
-    url: jdbc:mysql://139.159.206.140:3306/oauth?serverTimezone=UTC&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-    username: rootc
-    password: Weilai9!Cool
-    driver-class-name: com.mysql.jdbc.Driver
-    hikari:
-      connection-test-query: SELECT 1 FROM DUAL
-      minimum-idle: ５
-      maximum-pool-size: 15
-      pool-name: auth
-      max-lifetime: 1800000
-    type: com.zaxxer.hikari.HikariDataSource
-
+  
 redis:
   cache:
     expiration: 3601
